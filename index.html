@@ -1,0 +1,68 @@
+<html>
+<head><title></title></head>
+<body><p>
+var mouseEvent = "empty";<br>
+var Last_position_of_x,Last_position_of_y ;<br>
+
+canvas = document.getElementById('myCanvas');<br>
+ctx = canvas.getContext("2d");<br>
+color = "cyan";<br>
+Line_width =2;<br>
+ 
+canvas.addEventListener("mousedown",my_mousedown);<br>
+
+function my_mousedown(e){
+<br>
+    color = document.getElementById("input1").value;<br>
+    Line_width = document.getElementById("input2").value;<br>
+    mouseEvent = "mouseDown";<br>
+}
+
+canvas.addEventListener("mymouseleave", my_mouseleave);<br>
+function my_mouseleave(e)<br>
+{
+    mouseEvent = "mymouseleave";<br>
+}
+
+canvas.addEventListener("mymouseup", my_mouseup);<br>
+function my_mouseup(e)<br>
+{
+    mouseEvent = "mymouseup";<br>
+}
+
+canvas.addEventListener("mousemove",my_mousemove);<br>
+
+function my_mousemove(e){<br>
+
+    current_position_of_mouse_x = e.clientX - canvas.offsetLeft;<br>
+    current_position_of_mouse_y = e.clientY - canvas.offsetTop;<br>
+    
+
+    if(mouseEvent == "mouseDown"){<br>
+        ctx.beginPath();<br>
+        ctx.strokeStyle = color;<br>
+        ctx.Line_width = Line_width;<br>
+        console.log("Last position of x and y")<br>
+        console.log("x ="+ Last_position_of_x + "y ="+ Last_position_of_y); <br>
+ 
+        ctx.moveTo(Last_position_of_x, Last_position_of_y);<br>
+        
+        console.log("Current position of x and y")<br>
+        console.log("x ="+ current_position_of_mouse_x + "y ="+ current_position_of_mouse_y); <br>
+
+        ctx.lineTo(current_position_of_mouse_x, current_position_of_mouse_y);<br>
+        ctx.stroke();<br>
+
+    }
+
+Last_position_of_x = current_position_of_mouse_x;<br>
+Last_position_of_y = current_position_of_mouse_y;<br>
+}
+function clear()<br>
+{
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);<br>
+
+}
+</p>
+</body>
+<html>
